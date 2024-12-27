@@ -1,4 +1,4 @@
-name: Python application
+name: 'Python app - lint and test'
 
 on:
   push:
