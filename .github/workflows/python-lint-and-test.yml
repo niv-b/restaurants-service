@@ -41,7 +41,9 @@ jobs:
       - name: Test with pytest
         id: tests
         working-directory: app
-        run: pytest
+        run: |
+          pwd
+          pytest
 
       - name: Workflow Summary
         if: always()

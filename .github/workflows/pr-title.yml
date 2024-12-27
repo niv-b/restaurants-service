@@ -22,7 +22,8 @@ jobs:
         id: validate
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Write Summary on Failure
+
+      - name: Workflow Summary
         if: failure()
         run: |
           echo "### Validation Summary" >> $GITHUB_STEP_SUMMARY
