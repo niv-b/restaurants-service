@@ -1,0 +1,29 @@
+[
+  {
+    "name": "Pizza Hut",
+    "style": "Italian",
+    "address": "Wherever Street 99, Somewhere",
+    "open_hour": "09:00",
+    "close_hour": "23:15",
+    "vegetarian": "yes",
+    "delivers": "yes"
+  },
+  {
+    "name": "Le Petit Paris",
+    "style": "French",
+    "address": "Rue de Paris 50",
+    "open_hour": "10:00",
+    "close_hour": "23:30",
+    "vegetarian": "yes",
+    "delivers": "yes"
+  },
+  {
+    "name": "Korean BBQ",
+    "style": "Korean",
+    "address": "Seoul Street 88",
+    "open_hour": "12:00",
+    "close_hour": "23:59",
+    "vegetarian": "no",
+    "delivers": "no"
+  }
+]
