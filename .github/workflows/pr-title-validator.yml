@@ -22,4 +22,4 @@ jobs:
         if: failure()
         run: |
           echo "### Validation Summary" >> $GITHUB_STEP_SUMMARY
-          echo "- **Validate**: PR Title doesn't match conventional commit scheme!" >> $GITHUB_STEP_SUMMARY
+          echo "- ❌ **Validate**: PR Title doesn't match conventional commit scheme!" >> $GITHUB_STEP_SUMMARY
