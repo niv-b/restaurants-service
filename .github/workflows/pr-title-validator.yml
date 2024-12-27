@@ -13,8 +13,6 @@ jobs:
       pull-requests: read
       statuses: write
     steps:
-      # Please look up the latest version from
-      # https://github.com/amannn/action-semantic-pull-request/releases
       - uses: amannn/action-semantic-pull-request@v5.4.0
         id: validate
         env:
