@@ -13,14 +13,12 @@ The folder consists the `configs` folder for changing config files
 ```text
 .
 ├── README.md
-├── configs
+├── modules
 ├── environments
 │   └── dev
 │       ├── template
 │       │   └── env.auto.tfvars
-└── templates
-    ├── README.md
-    ├── _data.tf
+└── app
     ├── main.tf
     ├── provider.tf
     └── vars.tf
