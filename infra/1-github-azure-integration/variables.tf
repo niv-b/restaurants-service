@@ -2,10 +2,6 @@ variable "environment" {
   type    = string
 }
 
-variable "tf_state_rg_name" {
-  description = "The name of the resource group in which the Terraform state storage account will be created."
-}
-
 variable "identity_rg_name" {
   description = "The name of the resource group in which the user-assigned managed identity will be created."
 }
@@ -31,7 +27,6 @@ variable "github_organization_target" {
 
 variable "github_repository" {
   type        = string
-  default     = "my-aks-cluster"
   description = "The name of the GitHub repository to target"
 }
 
