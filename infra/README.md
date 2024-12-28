@@ -1,7 +1,7 @@
 # Infra
 
 The infra is provisioned with terraform, 
-When you first run it locally, make sure to run the `infra/boostrap.sh` file that will login to azure and create the tf state blob storage.
+When you first run it locally, make sure to run the `infra/boostrap.sh` script that will login to azure and create the tf state blob storage.
 Then you can run in each app, based on the order:
 `terraform init`
 `terraform plan -var-file=../environments/dev/github-azure-integration`
