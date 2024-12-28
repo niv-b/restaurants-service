@@ -32,6 +32,4 @@ The folder consists the `configs` folder for changing config files
 
 1. Init -> `terraform init`
 
-2. workspace -> `terraform workspace select $ENV`
-
-3. Plan -> `terraform plan -var-file=../regions/$REGION/$ENV/env.auto.tfvars`
+3. Plan -> `terraform plan -var-file=../enviroments/$ENV/$APP/env.auto.tfvars`
