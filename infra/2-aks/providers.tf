@@ -10,6 +10,13 @@ terraform {
       version = "3.3.2"
     }
   }
+
+  backend "azurerm" {
+    resource_group_name      = "terraform-state-rg"
+    storage_account_name     = "resttfstate1"
+    container_name           = "tfstate"
+    key                      = "aks/terraform.tfstate"
+  }
 }
 
 provider "azurerm" {
@@ -19,5 +26,3 @@ provider "azurerm" {
     }
   }
 }
-
-provider "random" {}
