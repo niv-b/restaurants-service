@@ -1,8 +1,12 @@
 # Infra
 
-The infra is provisioned with terraform, please use GitHub Actions with:
-`.github/workflows/terraform-plan.yaml` in order to check changed configurations
-and `.github/workflows/terraform-apply.yaml` to change configurations.
+The infra is provisioned with terraform, 
+When you first run it locally, make sure to run the `infra/boostrap.sh` file that will login to azure and create the tf state blob storage.
+Then you can run in each app, based on the order:
+`terraform init`
+`terraform plan -var-file=../environments/dev/github-azure-integration`
+`terraform apply -var-file=../environments/dev/github-azure-integration`
+etc.
 
 ## File Structure
 
