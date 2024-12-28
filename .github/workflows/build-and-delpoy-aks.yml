@@ -6,7 +6,7 @@ on:
     branches: [ main ]
   push:
     branches: [ main ]
-#    paths-ignore: [ deployment/**, .github/** ]
+    paths-ignore: [ deployment/**, .github/** ]
 
 permissions:
   id-token: write
@@ -32,29 +32,29 @@ jobs:
         run: |
           az account show
 
-#      - name: Set Git Commit SHA
-#        run: |
-#          echo "GIT_COMMIT_SHA=${GITHUB_SHA}" >> $GITHUB_ENV
-#
-#      - name: Docker build and push ACR
-#        working-directory: app
-#        run: |
-#          az acr login --name ${{ secrets.REGISTRY_LOGIN_SERVER }}
-#          docker build -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/restaurnats-service:${{ env.GIT_COMMIT_SHA }} .
-#          docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/restaurnats-service:${{ env.GIT_COMMIT_SHA }}
-#
-#      - name: Workflow Summary
-#        if: always()
-#        run: |
-#          echo "### Workflow Summary" >> $GITHUB_STEP_SUMMARY
-#          echo "" >> $GITHUB_STEP_SUMMARY
-#
-#          if [[ ${{ steps.docker-build-and-push-acr.outcome }} == 'success' ]]; then
-#            echo "- ✅ **Docker Build and Push to ACR Succeeded**" >> $GITHUB_STEP_SUMMARY
-#          else
-#            echo "- ❌ **Docker Build or Push to ACR Failed**" >> $GITHUB_STEP_SUMMARY
-#          fi
-#
-#          echo "" >> $GITHUB_STEP_SUMMARY
-#          echo "**Detailed Logs:**" >> $GITHUB_STEP_SUMMARY
-#          echo "- [View Docker Build Logs](#docker-build-and-push-acr)" >> $GITHUB_STEP_SUMMARY
+      - name: Set Git Commit SHA
+        run: |
+          echo "GIT_COMMIT_SHA=${GITHUB_SHA}" >> $GITHUB_ENV
+
+      - name: Docker build and push ACR
+        working-directory: app
+        run: |
+          az acr login --name ${{ secrets.REGISTRY_LOGIN_SERVER }}
+          docker build -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/restaurnats-service:${{ env.GIT_COMMIT_SHA }} .
+          docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/restaurnats-service:${{ env.GIT_COMMIT_SHA }}
+
+      - name: Workflow Summary
+        if: always()
+        run: |
+          echo "### Workflow Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          if [[ ${{ steps.docker-build-and-push-acr.outcome }} == 'success' ]]; then
+            echo "- ✅ **Docker Build and Push to ACR Succeeded**" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "- ❌ **Docker Build or Push to ACR Failed**" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Detailed Logs:**" >> $GITHUB_STEP_SUMMARY
+          echo "- [View Docker Build Logs](#docker-build-and-push-acr)" >> $GITHUB_STEP_SUMMARY
