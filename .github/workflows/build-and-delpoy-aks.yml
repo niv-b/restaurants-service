@@ -6,6 +6,10 @@ on:
     branches: [ main ]
 #    paths-ignore: [ deployment/**, .github/** ]
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   build-and-push-acr:
     runs-on: ubuntu-latest
