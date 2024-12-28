@@ -9,6 +9,7 @@ on:
 jobs:
   build-and-push-acr:
     runs-on: ubuntu-latest
+    environment: dev
 
     steps:
       - name: Checkout Code
