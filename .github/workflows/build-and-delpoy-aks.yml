@@ -1,14 +1,10 @@
 ## CICD --> Build & Push docker image to ACR + Deploy to AKS
 name: 'Build image and deploy to AKS'
 
-#on:
-#  push:
-#    branches: [ main ]
-#    paths-ignore: [ deployment/**, .github/** ]
-
 on:
-  pull_request:
-    branches: [ "main" ]
+  push:
+    branches: [ main ]
+    paths-ignore: [ deployment/**, .github/** ]
 
 jobs:
   build-and-push-acr:
