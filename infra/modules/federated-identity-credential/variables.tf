@@ -1,14 +1,29 @@
-variable "name" {
-  description = "The name of the resource group in which the resources will be created."
+variable "federated_identity_credential_name" {
   type = string
+  description = "value of the federated identity credential name"
 }
 
-variable "location" {
-  description = "The location of the resource group in which the resources will be created."
+variable "rg_name" {
   type = string
+  description = "value of the resource group name"
 }
 
-variable "tags" {
-  description = "A mapping of tags to assign to the resource group."
-  type = map(string)
+variable "user_assigned_identity_id" {
+  type = string
+  description = "value of the user assigned identity id"
+}
+
+variable "subject" {
+  type = string
+  description = "value of the subject"
+}
+
+variable "audience_name" {
+  type = string
+  description = "value of the audience name"
+}
+
+variable "issuer_url" {
+  type = string
+  description = "value of the issuer url"
 }

@@ -1,0 +1,53 @@
+## CICD --> Build & Push docker image to ACR + Deploy to AKS
+name: 'Build image and deploy to AKS'
+
+on:
+  push:
+    branches: [ main ]
+    paths-ignore: [ deployment/**, .github/** ]
+
+jobs:
+  build-and-push-acr:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Azure login
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: 'Run Azure CLI commands'
+        run: |
+          az account show
+
+#      - name: Set Git Commit SHA
+#        run: |
+#          echo "GIT_COMMIT_SHA=${GITHUB_SHA}" >> $GITHUB_ENV
+#
+#      - name: Docker build and push ACR
+#        working-directory: app
+#        run: |
+#          az acr login --name ${{ secrets.REGISTRY_LOGIN_SERVER }}
+#          docker build -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/restaurnats-service:${{ env.GIT_COMMIT_SHA }} .
+#          docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/restaurnats-service:${{ env.GIT_COMMIT_SHA }}
+#
+#      - name: Workflow Summary
+#        if: always()
+#        run: |
+#          echo "### Workflow Summary" >> $GITHUB_STEP_SUMMARY
+#          echo "" >> $GITHUB_STEP_SUMMARY
+#
+#          if [[ ${{ steps.docker-build-and-push-acr.outcome }} == 'success' ]]; then
+#            echo "- ✅ **Docker Build and Push to ACR Succeeded**" >> $GITHUB_STEP_SUMMARY
+#          else
+#            echo "- ❌ **Docker Build or Push to ACR Failed**" >> $GITHUB_STEP_SUMMARY
+#          fi
+#
+#          echo "" >> $GITHUB_STEP_SUMMARY
+#          echo "**Detailed Logs:**" >> $GITHUB_STEP_SUMMARY
+#          echo "- [View Docker Build Logs](#docker-build-and-push-acr)" >> $GITHUB_STEP_SUMMARY

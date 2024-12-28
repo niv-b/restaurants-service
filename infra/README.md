@@ -16,7 +16,7 @@ The folder consists the `configs` folder for changing config files
 ├── configs
 ├── environments
 │   └── dev
-│       ├── us-east-1
+│       ├── template
 │       │   └── env.auto.tfvars
 └── templates
     ├── README.md

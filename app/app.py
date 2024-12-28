@@ -42,8 +42,8 @@ def get_recommendations():
         restaurant for restaurant in restaurants
         if (not style or restaurant["style"].lower() == style.lower()) and
            (not vegetarian or restaurant["vegetarian"].lower() == vegetarian.lower()) and
-           (not delivery or restaurant["delivers"].lower() == delivery.lower()) and
-           is_open(restaurant["open_hour"], restaurant["close_hour"], current_time)
+           (not delivery or restaurant["delivers"].lower() == delivery.lower())
+           # is_open(restaurant["open_hour"], restaurant["close_hour"], current_time)
     ]
 
     # If no restaurants match the criteria
