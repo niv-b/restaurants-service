@@ -188,7 +188,7 @@ Get restaurant recommendations based on filters.
 
 **Example Request:**
 ```bash
-curl "http://localhost:6379/recommendations?style=Italian&vegetarian=yes"
+curl "http://localhost:5000/recommendations?style=Italian&vegetarian=yes"
 ```
 
 **Example Response:**
