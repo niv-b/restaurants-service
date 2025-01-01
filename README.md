@@ -58,7 +58,7 @@ flowchart TB
   - Azure Kubernetes Service (AKS)
   - Azure Container Registry (ACR)
   - Azure Key Vault
-  - Virtual Network with Service Endpoints
+  - Virtual Network and subnet
 - **DevOps**:
   - Terraform for Infrastructure as Code
   - GitHub Actions for CI/CD
