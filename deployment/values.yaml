@@ -23,7 +23,7 @@ serviceAccount:
 service:
   type: LoadBalancer
   port: 80
-  targetPort: 6379
+  targetPort: 5000
 
 nodeSelector:
   kubernetes.io/os: linux
