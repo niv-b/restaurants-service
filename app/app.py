@@ -1,6 +1,8 @@
 from flask import Flask, request, jsonify
 import json
 from datetime import datetime
+import os
+from azure.cosmos import CosmosClient, PartitionKey
 
 app = Flask(__name__)
 
@@ -118,4 +120,4 @@ def log_to_cosmos(request_data, response_data):
 
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=6379, debug=True)
+    app.run(host="0.0.0.0", port=5000, debug=True)
