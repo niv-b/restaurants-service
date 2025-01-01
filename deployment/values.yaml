@@ -1,0 +1,29 @@
+replicaCount: 2
+
+image:
+  repository: <your-acr-name>.azurecr.io/restaurant-app
+  tag: "latest"
+  pullPolicy: IfNotPresent
+
+keyVault:
+  name: <your-key-vault-name>
+  tenantId: <your-tenant-id>
+  secrets:
+    - name: CosmosEndpoint
+      type: secret
+      version: "" # Optional, defaults to the latest
+
+identity:
+  clientId: <your-user-assigned-identity-clientid>
+  useWorkloadIdentity: true
+
+serviceAccount:
+  name: workload-identity-sa
+
+service:
+  type: LoadBalancer
+  port: 80
+  targetPort: 6379
+
+nodeSelector:
+  kubernetes.io/os: linux

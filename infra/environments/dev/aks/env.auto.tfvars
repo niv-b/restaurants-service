@@ -1,7 +1,7 @@
-resource_group_name = "restaurants-aks"
+rg_name = "restaurants-aks"
 location = "eastus"
 environment = "dev"
-cluster_name = "restaurants-cluster"
+aks_cluster_name = "restaurants-cluster"
 tags = {
   environment = "dev"
   owner = "nivb"
