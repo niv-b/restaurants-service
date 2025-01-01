@@ -32,4 +32,4 @@ Then you can run in each app, based on the order:
 
 `init -> plan -> apply`
 
-3. Plan -> `terraform plan -var-file=../enviroments/$ENV/$APP/env.auto.tfvars`
+Plan -> `terraform plan -var-file=../enviroments/$ENV/$APP/env.auto.tfvars`
