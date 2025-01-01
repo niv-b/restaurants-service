@@ -1,12 +1,12 @@
 replicaCount: 2
 
 image:
-  repository: <your-acr-name>.azurecr.io/restaurant-app
+  repository: restuarantsacr.azurecr.io/restaurant-service
   tag: "latest"
   pullPolicy: IfNotPresent
 
 keyVault:
-  name: <your-key-vault-name>
+  name: restaurantsdb-kv
   tenantId: <your-tenant-id>
   secrets:
     - name: CosmosEndpoint
@@ -14,7 +14,7 @@ keyVault:
       version: "" # Optional, defaults to the latest
 
 identity:
-  clientId: <your-user-assigned-identity-clientid>
+  clientId: <user-assigned-identity-clientid>
   useWorkloadIdentity: true
 
 serviceAccount:

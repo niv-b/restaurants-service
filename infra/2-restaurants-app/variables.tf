@@ -49,7 +49,7 @@ variable "subnet_prefixes" {
 variable "uai_name" {
   type        = string
   description = "Managed Identity Name"
-  default     = "aks-msi"
+  default     = "aks-restaurants"
 }
 
 variable "kv_name" {

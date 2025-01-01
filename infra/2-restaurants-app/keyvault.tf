@@ -1,9 +1,5 @@
-resource "random_string" "kv" {
-  length = 8
-  special = false
-}
 resource "azurerm_key_vault" "this" {
-  name                       = "${var.kv_name}-${random_string.kv.result}"
+  name                       = var.kv_name
   location                   = azurerm_resource_group.this.location
   resource_group_name        = azurerm_resource_group.this.name
   tenant_id                  = data.azurerm_client_config.current.tenant_id

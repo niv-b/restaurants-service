@@ -36,10 +36,37 @@ jobs:
 
       - name: Docker build and push ACR
         working-directory: app
+        id: docker-build-and-push-acr
         run: |
-          az acr login --name ${{ secrets.REGISTRY_LOGIN_SERVER }}
-          docker build -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/restaurnats-service:${{ env.GIT_COMMIT_SHA }} .
-          docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/restaurnats-service:${{ env.GIT_COMMIT_SHA }}
+          az acr login --name restuarantsacr
+          docker build -t restuarantsacr.azurecr.io/restaurant-service:${{ env.GIT_COMMIT_SHA }} .
+          docker push restuarantsacr.azurecr.io/restaurant-service:${{ env.GIT_COMMIT_SHA }}
+
+      - name: Login to AKS
+        uses: azure/aks-set-context@v4
+        with:
+          resource-group: 'restaurants-aks'
+          cluster-name: 'restaurants-cluster'
+
+      - name: Fetch tenantId and clientId
+        id: fetch-identity
+        run: |
+          TENANT_ID=$(az account show --query 'tenantId' -o tsv)
+          CLIENT_ID=$(az identity show --name "aks-restaurants" --resource-group "restaurants-aks" --query 'clientId' -o tsv)
+          CLIENT_ID=$(az identity show --name "aks-restaurants" --resource-group "restaurants-aks" --query 'clientId' -o tsv)
+          echo "TENANT_ID=${TENANT_ID}" >> $GITHUB_ENV
+          echo "CLIENT_ID=${CLIENT_ID}" >> $GITHUB_ENV
+
+      - name: Deploy Helm Chart
+        working-directory: deployment
+        id: deploy-helm-chart
+        run: |
+          helm upgrade --install restaurants-service . \
+            --namespace "restaurants-service" \
+            --create-namespace \
+            --set keyVault.tenantId=${{ env.TENANT_ID }} \
+            --set identity.clientId=${{ env.CLIENT_ID }} \
+            --set azure.resourceGroup=${{ secrets.AZURE_RESOURCE_GROUP }}
 
       - name: Workflow Summary
         if: always()
@@ -53,6 +80,13 @@ jobs:
             echo "- ❌ **Docker Build or Push to ACR Failed**" >> $GITHUB_STEP_SUMMARY
           fi
 
+          if [[ ${{ steps.deploy-helm-chart.outcome }} == 'success' ]]; then
+            echo "- ✅ **Helm Chart Deployment to AKS Succeeded**" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "- ❌ **Helm Chart Deployment to AKS Failed**" >> $GITHUB_STEP_SUMMARY
+          fi
+
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "**Detailed Logs:**" >> $GITHUB_STEP_SUMMARY
           echo "- [View Docker Build Logs](#docker-build-and-push-acr)" >> $GITHUB_STEP_SUMMARY
+          echo "- [View Helm Deployment Logs](#deploy-helm-chart)" >> $GITHUB_STEP_SUMMARY

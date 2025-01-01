@@ -1,14 +1,10 @@
-locals {
-  aks_cluster_name = "${var.environment}-${var.aks_cluster_name}"
-}
-
 resource "azurerm_kubernetes_cluster" "this" {
-  name                = local.aks_cluster_name
+  name                = var.aks_cluster_name
   location            = azurerm_resource_group.this.location
   resource_group_name = azurerm_resource_group.this.name
-  node_resource_group = "${local.aks_cluster_name}-node-rg"
+  node_resource_group = "${var.aks_cluster_name}-node-rg"
   kubernetes_version  = "1.30.0"
-  dns_prefix          = "${local.aks_cluster_name}-dns"
+  dns_prefix          = "${var.aks_cluster_name}-dns"
 
   # workload identity
   workload_identity_enabled = true
