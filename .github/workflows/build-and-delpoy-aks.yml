@@ -66,7 +66,6 @@ jobs:
             --create-namespace \
             --set keyVault.tenantId=${{ env.TENANT_ID }} \
             --set identity.clientId=${{ env.CLIENT_ID }} \
-            --set azure.resourceGroup=${{ secrets.AZURE_RESOURCE_GROUP }}
 
       - name: Workflow Summary
         if: always()
