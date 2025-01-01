@@ -58,6 +58,7 @@ flowchart TB
   - Azure Kubernetes Service (AKS)
   - Azure Container Registry (ACR)
   - Azure Key Vault
+  - Azure Cosmos DB
   - Virtual Network and subnet
 - **DevOps**:
   - Terraform for Infrastructure as Code
