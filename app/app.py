@@ -1,6 +1,8 @@
 from flask import Flask, request, jsonify
 import json
 from datetime import datetime
+import os
+from azure.cosmos import CosmosClient, PartitionKey
 
 app = Flask(__name__)
 
